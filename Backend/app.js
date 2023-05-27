@@ -39,7 +39,6 @@ function sendotp(email){
         otp: otp
       });
   
-      // Save the user document to the database
     newUser.save();
 
   
@@ -77,35 +76,22 @@ function sendotp(email){
   }
 
 app.post('/api/send-otp', async (req, res) => {
-    // Get the email address from the request
     let email = req.body.email
-  
-    // Send the OTP to the user's email address
+   
     await sendotp(email);
     res.json({status:'success'})
     console.log(otp);
 
     
-
-    
-    
-  
-    // Redirect the user to the OTP verification page
     // res.redirect('/verify-otp');
   });
-
+ 
 //   verify password
 app.post('/api/verify-otp', async (req, res) => {
-    // Get the email address and OTP from the request
     let email = req.body.email
-
+ 
     console.log(email);
     console.log(otp);
-
-    // const email = user.findOne(emails);
-    // const otp = user.findOne(emails);
-  
-    // Verify the OTP
     
     
     await verifyOTP(email, otp);
